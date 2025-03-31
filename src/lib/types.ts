@@ -13,4 +13,11 @@ export interface Question {
 export interface QuizCache {
   questions: Question[];
   lastGenerated: number;
+}
+
+export interface QuizState {
+  currentQuestionIndex: number;
+  questions: Question[];
+  userAnswers: string[];
+  score: number;
 } 

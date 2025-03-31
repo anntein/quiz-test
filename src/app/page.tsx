@@ -4,8 +4,8 @@ import { useState } from 'react';
 import HomeView from '../components/HomeView';
 import QuestionView from '../components/QuestionView';
 import ResultsView from '../components/ResultsView';
-import { Question, QuizState } from '../lib/types';
-import { getQuestions } from '../lib/questions';
+import { QuizState } from '@/lib/types';
+import { getQuestions } from '@/lib/questions';
 
 type View = 'home' | 'question' | 'results';
 

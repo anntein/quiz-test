@@ -1,4 +1,4 @@
-import { Question } from '@/lib/types';
+import { Question } from './types';
 import questionsData from '@/data/questions.json';
 
 function shuffleArray<T>(array: T[]): T[] {

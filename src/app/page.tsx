@@ -1,9 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import HomeView from '../components/HomeView';
-import QuestionView from '../components/QuestionView';
-import ResultsView from '../components/ResultsView';
+import HomeView from '@/components/HomeView';
+import QuestionView from '@/components/QuestionView';
+import ResultsView from '@/components/ResultsView';
 import { QuizState } from '@/lib/types';
 import { getQuestions } from '@/lib/questions';
 
@@ -11,6 +11,7 @@ type View = 'home' | 'question' | 'results';
 
 export default function Home() {
   const [view, setView] = useState<View>('home');
+  const [showEmoji, setShowEmoji] = useState(false);
   const [quizState, setQuizState] = useState<QuizState>({
     currentQuestionIndex: 0,
     questions: [],
@@ -34,9 +35,16 @@ export default function Home() {
     }
   };
 
-  const handleAnswer = (answerId: string) => {
+  const handleAnswer = async (answerId: string) => {
     const currentQuestion = quizState.questions[quizState.currentQuestionIndex];
-    const isCorrect = currentQuestion.correctAnswerId === answerId;
+    const isCorrect = answerId !== 'time_out' && currentQuestion.correctAnswerId === answerId;
+    
+    if (isCorrect) {
+      setShowEmoji(true);
+      // Wait for 1 second before updating state
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      setShowEmoji(false);
+    }
     
     const newState = {
       ...quizState,
@@ -54,6 +62,7 @@ export default function Home() {
 
   const returnHome = () => {
     setView('home');
+    setShowEmoji(false);
     setQuizState({
       currentQuestionIndex: 0,
       questions: [],
@@ -73,6 +82,7 @@ export default function Home() {
         onAnswer={handleAnswer}
         currentQuestionNumber={quizState.currentQuestionIndex + 1}
         totalQuestions={quizState.questions.length}
+        showEmoji={showEmoji}
       />
     );
   }

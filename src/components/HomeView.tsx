@@ -13,10 +13,11 @@ const HomeView: FC<HomeViewProps> = ({ onStartQuiz }) => {
       <div className="w-full max-w-2xl text-center">
         <div className="relative w-full h-48 mb-8">
           <Image
-            src="/quiz-clash.webp"
+            src="/quiz-test/quiz-clash.webp"
             alt="Quiz Clash"
-            fill
-            className="object-contain"
+            width={400}
+            height={400}
+            className="rounded-lg shadow-lg mb-8"
             priority
           />
         </div>

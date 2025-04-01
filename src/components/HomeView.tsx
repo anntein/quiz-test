@@ -1,6 +1,7 @@
 'use client';
 
 import { FC } from 'react';
+import Image from 'next/image';
 
 interface HomeViewProps {
   onStartQuiz: () => void;
@@ -9,13 +10,23 @@ interface HomeViewProps {
 const HomeView: FC<HomeViewProps> = ({ onStartQuiz }) => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4">
-      <h1 className="text-3xl font-bold mb-8">Quiz Clash ⚡️</h1>
-      <button
-        onClick={onStartQuiz}
-        className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg transition-colors"
-      >
-        New Quiz
-      </button>
+      <div className="w-full max-w-2xl text-center">
+        <div className="relative w-full h-48 mb-8">
+          <Image
+            src="/quiz-clash.webp"
+            alt="Quiz Clash"
+            fill
+            className="object-contain"
+            priority
+          />
+        </div>
+        <button
+          onClick={onStartQuiz}
+          className="bg-[#0F3856] hover:bg-[#0a2a3f] text-white font-bold py-3 px-8 rounded-lg text-lg transition-colors duration-200 shadow-lg hover:shadow-[#0F3856]/25"
+        >
+          New Quiz
+        </button>
+      </div>
     </div>
   );
 };

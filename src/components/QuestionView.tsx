@@ -67,30 +67,21 @@ const QuestionView: FC<QuestionViewProps> = ({
     };
   }, [question.id, isAnswered, onAnswer]);
 
-  // Calculate progress bar width
-  const progressWidth = (timeLeft / QUESTION_TIME_LIMIT) * 100;
-  
   return (
     <div className="min-h-screen flex flex-col items-center justify-center p-4">
       <div className="w-full max-w-2xl">
         {/* Timer display */}
-        <div className="mb-4">
-          <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
-            <div 
-              className="h-full bg-gray-400"
-              style={{ width: `${progressWidth}%` }}
-            />
-          </div>
-          <div className="text-center mt-2 font-bold">
+        <div className="mb-4 text-center">
+          <div className="font-bold text-[#1e293b]">
             {timeLeft} seconds left
           </div>
         </div>
 
         <div className="mb-8 text-center">
-          <p className="text-sm text-gray-500 mb-2">
+          <p className="text-sm text-[#1e293b] mb-2">
             Question {currentQuestionNumber} of {totalQuestions}
           </p>
-          <h2 className="text-xl font-bold">{question.text}</h2>
+          <h2 className="text-xl font-bold text-[#1e293b]">{question.text}</h2>
         </div>
 
         <div className="space-y-4">
@@ -99,10 +90,16 @@ const QuestionView: FC<QuestionViewProps> = ({
               key={alternative.id}
               onClick={() => handleAnswer(alternative.id)}
               disabled={isAnswered}
-              className={`w-full p-4 text-left border rounded-lg transition-colors ${
-                !isAnswered ? 'hover:bg-[#222222] hover:text-white' :
-                alternative.id === question.correctAnswerId ? 'bg-[#222222] text-white' :
-                selectedId === alternative.id ? 'bg-[#222222] text-white' : ''
+              className={`w-full p-4 rounded-lg text-left transition-all duration-200 ${
+                isAnswered
+                  ? alternative.id === selectedId
+                    ? alternative.id === question.correctAnswerId
+                      ? 'bg-[#22c55e] text-white'
+                      : 'bg-[#ef4444] text-white'
+                    : alternative.id === question.correctAnswerId
+                    ? 'bg-[#22c55e] text-white'
+                    : 'bg-white/50 text-[#1e293b]'
+                  : 'bg-white/50 hover:bg-white text-[#1e293b]'
               }`}
             >
               {alternative.text} {showEmoji && alternative.id === question.correctAnswerId && " 🤩"}

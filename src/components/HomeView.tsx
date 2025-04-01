@@ -15,9 +15,8 @@ const HomeView: FC<HomeViewProps> = ({ onStartQuiz }) => {
           <Image
             src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/quiz-clash.webp`}
             alt="Quiz Clash"
-            width={400}
-            height={400}
-            className="rounded-lg shadow-lg mb-8"
+            fill
+            className="object-contain"
             priority
           />
         </div>

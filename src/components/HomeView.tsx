@@ -13,7 +13,7 @@ const HomeView: FC<HomeViewProps> = ({ onStartQuiz }) => {
       <div className="w-full max-w-2xl text-center">
         <div className="relative w-full h-48 mb-8">
           <Image
-            src="/quiz-test/quiz-clash.webp"
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/quiz-clash.webp`}
             alt="Quiz Clash"
             width={400}
             height={400}
